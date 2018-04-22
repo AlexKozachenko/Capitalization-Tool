@@ -79,7 +79,7 @@ namespace CapitalizationTool
                             Line1[i] = Line1[i].ToLower();
                         }
                     }
-                    if (IsPunctuationMarks(Line[Line.Length-1]) == true)
+                    if (IsPunctuationMarks(Line1[Line1.Length - 1][0]) == true)
                     {
                         Char FirstLetter = Char.ToUpper(Line1[Line1.Length - 2][0]);
                         Line1[Line1.Length - 2] = Line1[Line1.Length - 2].Remove(0, 1);
