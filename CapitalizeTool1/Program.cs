@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ConsoleApplication11
+namespace CapitalizationTool
 {
-    class CapitalizeTool
+    class CapitalizationTool
     {
         private Char[] PunctuationMarks = { ';', ':', '.', ',', '!', '?', '-' };
         private String[] ShortWords = { "A", "An", "And", "At", "But", "By", "For", "In", "Into", "Nor", "Not",
@@ -57,16 +57,33 @@ namespace ConsoleApplication11
                         Console.SetCursorPosition(0, TopCursorPosition);
                     }
                     Line = Line.ToLower();
+                    for (UInt16 i = 0; i < Line.Length; i++)
+                    {
+                        if (IsPunctuationMarks(Line[i]) == true)
+                        {
+                            i--;
+                            Line = Line.Insert(i + 1, " ");
+                            Line = Line.Insert(i + 3, " ");
+                            i += 4;
+                        }
+                    }
                     String[] Line1 = Line.Split(new Char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
                     for (UInt16 i = 0; i < Line1.Length; i++)
                     {
-                        Char ch = Char.ToUpper(Line1[i][0]);
+                        Char FirstLetter = Char.ToUpper(Line1[i][0]);
                         Line1[i] = Line1[i].Remove(0, 1);
-                        Line1[i] = Line1[i].Insert(0, new String(ch, 1));
+                        Line1[i] = Line1[i].Insert(0, new String(FirstLetter, 1));
                         if (i != 0 && i != Line1.Length - 1 && IsShortWords(Line1[i]) == true)
                         {
                             Line1[i] = Line1[i].ToLower();
                         }
+                    }
+                    if (IsPunctuationMarks(Line[Line.Length-1]) == true)
+                    {
+                        Char FirstLetter = Char.ToUpper(Line1[Line1.Length - 2][0]);
+                        Line1[Line1.Length - 2] = Line1[Line1.Length - 2].Remove(0, 1);
+                        Line1[Line1.Length - 2] = Line1[Line1.Length - 2].Insert(0, new String(FirstLetter, 1));
                     }
                     Line = String.Join(" ", Line1);
                     for (UInt16 i = 1; i < Line.Length; i++)
@@ -85,7 +102,7 @@ namespace ConsoleApplication11
                     }
                     for (UInt16 i = 0; i < Line.Length; i++)
                     {
-                        if ((Line[i] == '-') && Line[i - 1] != ' ')
+                        if (Line[i] == '-' && Line[i - 1] != ' ')
                         {
                             i--;
                             Line = Line.Insert(i + 1, " ");
@@ -102,8 +119,8 @@ namespace ConsoleApplication11
         }
         public static void Main()
         {
-            CapitalizeTool CapitalizeTool = new CapitalizeTool();
-            CapitalizeTool.Capitalize();
+            CapitalizationTool CapitalizationTool = new CapitalizationTool();
+            CapitalizationTool.Capitalize();
         }
     }
 }
