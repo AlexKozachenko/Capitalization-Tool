@@ -130,7 +130,7 @@ namespace CapitalizationTool
                 while (Line.Length == 0);
                 Console.ResetColor();
                 Console.WriteLine("Capitalized title: ");
-               Console.SetCursorPosition("Capitalized title: ".Length, TopCursorPosition); 
+                Console.SetCursorPosition("Capitalized title: ".Length, TopCursorPosition); 
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine(Line);
                 Console.ResetColor();
