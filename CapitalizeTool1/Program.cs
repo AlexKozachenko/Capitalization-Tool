@@ -7,7 +7,7 @@ namespace CapitalizationTool
     class CapitalizationTool
     {
         private Char[] PunctuationMarks = { ';', ':', '.', ',', '!', '?', '-' };
-        private String[] ShortWords = { "A", "An", "And", "At", "But", "By", "For", "In", "Into", "Nor", "Not",
+        private String[] ShortWords = { "A", "An", "And", "At", "But", "By", "For", "In", "Nor", "Not",
             "Of", "On", "Or", "Out", "So", "The", "To", "Up", "Yet"};
         private Boolean IsShortWords(String Line)
         {
@@ -37,7 +37,7 @@ namespace CapitalizationTool
         }
         public void Capitalize()
         {
-            Console.WriteLine("Enter string:");
+            Console.WriteLine("Original title:");
             UInt16 TopCursorPosition = 0;
             String Line;
             do
@@ -45,7 +45,7 @@ namespace CapitalizationTool
                 TopCursorPosition++;
                 if (TopCursorPosition > 1)
                 {
-                    Console.WriteLine("Enter string:");
+                    Console.WriteLine("Original title:");
                     TopCursorPosition++;
                 }
                 Console.ForegroundColor = ConsoleColor.Red;
@@ -68,7 +68,6 @@ namespace CapitalizationTool
                         }
                     }
                     String[] Line1 = Line.Split(new Char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-
                     for (UInt16 i = 0; i < Line1.Length; i++)
                     {
                         Char FirstLetter = Char.ToUpper(Line1[i][0]);
@@ -79,7 +78,7 @@ namespace CapitalizationTool
                             Line1[i] = Line1[i].ToLower();
                         }
                     }
-                    if (IsPunctuationMarks(Line1[Line1.Length - 1][0]) == true)
+                    if (Line1.Length > 0 &&IsPunctuationMarks(Line1[Line1.Length - 1][0]) == true)
                     {
                         Char FirstLetter = Char.ToUpper(Line1[Line1.Length - 2][0]);
                         Line1[Line1.Length - 2] = Line1[Line1.Length - 2].Remove(0, 1);
@@ -110,7 +109,11 @@ namespace CapitalizationTool
                     }
                 }
                 while (Line == "");
+               
+                //Console.ResetColor();
+                //Console.WriteLine("Capitalized title: ");
                 Console.ForegroundColor = ConsoleColor.Green;
+               
                 Console.WriteLine(Line);
                 Console.ResetColor();
                 TopCursorPosition++;
