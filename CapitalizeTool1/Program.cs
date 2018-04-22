@@ -46,7 +46,6 @@ namespace CapitalizationTool
                 if (TopCursorPosition > 1)
                 {
                     Console.WriteLine("Enter title to capitalize: ");
-                    Console.SetCursorPosition("Enter title to capitalize: ".Length, TopCursorPosition);
                 }
                 Console.ForegroundColor = ConsoleColor.Red;
                 do
