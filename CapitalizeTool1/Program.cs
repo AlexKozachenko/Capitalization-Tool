@@ -61,12 +61,15 @@ namespace CapitalizationTool
                     {
                         Line = Line.ToLower();
                         //если по ходу строки встречаются знаки препинания, отделяем их пробелами
-                        for (Int16 i = 1; i < Line.Length; i++)
+                        for (Int16 i = 0; i < Line.Length; i++)
                         {
                             if (IsPunctuationMarks(Line[i]) == true)
                             {
                                 i--;
-                                Line = Line.Insert(i + 1, " ");
+                                if (i >= -1)
+                                {
+                                    Line = Line.Insert(i + 1, " ");
+                                }
                                 Line = Line.Insert(i + 3, " ");
                                 i += 4;
                             }
@@ -86,7 +89,7 @@ namespace CapitalizationTool
                             }
                         }
                         //если в конце строки знак препинания, поднимаем первую букву слова перед ним
-                        if (Line1.Length > 1 && IsPunctuationMarks(Line1[Line1.Length - 1][0]) == true)
+                        if (Line1.Length > 0 && IsPunctuationMarks(Line1[Line1.Length - 1][0]) == true)
                         {
                             Char FirstLetter = Char.ToUpper(Line1[Line1.Length - 2][0]);
                             Line1[Line1.Length - 2] = Line1[Line1.Length - 2].Remove(0, 1);
