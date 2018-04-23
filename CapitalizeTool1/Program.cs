@@ -61,7 +61,7 @@ namespace CapitalizationTool
                     {
                         Line = Line.ToLower();
                         //если по ходу строки встречаются знаки препинания, отделяем их пробелами
-                        for (UInt16 i = 0; i < Line.Length; i++)
+                        for (Int16 i = 1; i < Line.Length; i++)
                         {
                             if (IsPunctuationMarks(Line[i]) == true)
                             {
@@ -86,7 +86,7 @@ namespace CapitalizationTool
                             }
                         }
                         //если в конце строки знак препинания, поднимаем первую букву слова перед ним
-                        if (Line1.Length > 0 && IsPunctuationMarks(Line1[Line1.Length - 1][0]) == true)
+                        if (Line1.Length > 1 && IsPunctuationMarks(Line1[Line1.Length - 1][0]) == true)
                         {
                             Char FirstLetter = Char.ToUpper(Line1[Line1.Length - 2][0]);
                             Line1[Line1.Length - 2] = Line1[Line1.Length - 2].Remove(0, 1);
@@ -99,29 +99,12 @@ namespace CapitalizationTool
                         {
                             Line = Line.Insert(0, " ");
                         }
-                        //убираем пробел перед знаком препинания
+                        //убираем пробел перед знаком препинания, если это не тире
                         for (UInt16 i = 1; i < Line.Length; i++)
                         {
-                            if (IsPunctuationMarks(Line[i]) == true && Line[i - 1] == ' ')
+                            if (IsPunctuationMarks(Line[i]) == true && Line[i - 1] == ' ' && Line[i] != '-')
                             {
                                 Line = Line.Remove(i - 1, 1);
-                            }
-                        }
-                        //вставляем пробел после знака препинания, если его не было
-                        for (UInt16 i = 0; i < Line.Length - 1; i++)
-                        {
-                            if (IsPunctuationMarks(Line[i]) == true && Line[i + 1] != ' ')
-                            {
-                                Line = Line.Insert(i + 1, " ");
-                            }
-                        }
-                        //форматируем тире
-                        for (UInt16 i = 0; i < Line.Length; i++)
-                        {
-                            if (Line[i] == '-' && Line[i - 1] != ' ')
-                            {
-                                i--;
-                                Line = Line.Insert(i + 1, " ");
                             }
                         }
                     }
