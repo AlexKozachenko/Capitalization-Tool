@@ -37,27 +37,19 @@ namespace CapitalizationTool
         }
         public void Capitalize()
         {
-            Console.WriteLine("Enter title to capitalize: ");
             UInt16 TopCursorPosition = 0;
             String Line;
             do
             {
                 TopCursorPosition++;
-                if (TopCursorPosition > 1)
-                {
-                    Console.WriteLine("Enter title to capitalize: ");
-                }
+                Console.WriteLine("Enter title to capitalize: ");
                 Console.ForegroundColor = ConsoleColor.Red;
                 do
                 {
                     Console.SetCursorPosition("Enter title to capitalize: ".Length, TopCursorPosition - 1);
                     Line = Console.ReadLine();
                     //если нажат Enter, курсор остается на месте
-                    if (Line.Length == 0)
-                    {
-                        Console.SetCursorPosition(0, TopCursorPosition);
-                    }
-                    else
+                    if (Line.Length != 0)
                     {
                         Line = Line.ToLower();
                         //если по ходу строки встречаются знаки препинания, отделяем их пробелами
@@ -75,7 +67,7 @@ namespace CapitalizationTool
                             }
                         }
                         //делаем из строки массив подстрок
-                            String[] Line1 = Line.Split(new Char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                        String[] Line1 = Line.Split(new Char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
                         //поднимаем первые буквы подстрок
                         for (UInt16 i = 0; i < Line1.Length; i++)
                         {
@@ -89,7 +81,7 @@ namespace CapitalizationTool
                             }
                         }
                         //если в конце строки знак препинания, поднимаем первую букву слова перед ним
-                        if (Line1.Length > 0 && IsPunctuationMarks(Line1[Line1.Length - 1][0]) == true)
+                        if (Line1.Length > 1 && IsPunctuationMarks(Line1[Line1.Length - 1][0]) == true)
                         {
                             Char FirstLetter = Char.ToUpper(Line1[Line1.Length - 2][0]);
                             Line1[Line1.Length - 2] = Line1[Line1.Length - 2].Remove(0, 1);
@@ -115,7 +107,7 @@ namespace CapitalizationTool
                 while (Line.Length == 0);
                 Console.ResetColor();
                 Console.WriteLine("Capitalized title: ");
-                Console.SetCursorPosition("Capitalized title: ".Length, TopCursorPosition); 
+                Console.SetCursorPosition("Capitalized title: ".Length, TopCursorPosition);
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine(Line);
                 Console.ResetColor();
