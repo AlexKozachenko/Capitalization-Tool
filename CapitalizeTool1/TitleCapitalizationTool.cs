@@ -49,27 +49,30 @@ namespace TitleCapitalizationTool
                 {
                     Console.SetCursorPosition("Enter title to capitalize: ".Length, topCursorPosition - 1);
                     line = Console.ReadLine();
-                    // строка обрабатывается, если она неулевой длины
+                    // строка обрабатывается, если она ненулевой длины
                     if (line.Length != 0)
                     {
                         line = line.ToLower();
                         // если по ходу строки встречаются знаки препинания, отделяем их пробелами
-                        UInt16 counterOfPunctuationMarks = 0;
                         for (Int16 i = 0; i < line.Length; i++)
                         {
                             if (IsPunctuationMarks(line[i]))
                             {
-                                counterOfPunctuationMarks++;
-                                // если знак препинания встречется впервые, перед ним нужно вставить пробел
-                                // для этого выполняется 
-                                // откат индекса на 1, чтобы в Insert'ах не было выражений с вычитанием 
+                                // откат индекса на 1, чтобы в Insert'ах не было выражений с вычитанием
+                                i--;
                                 // первый пробел вставляется в позицию 1 от нового i
-                                const UInt16 offsetIndex = 1;
-                                if (counterOfPunctuationMarks == 1 )
+                                const UInt16 offsetIndexBeforePunctuationMark = 1;
+                                // соответственно знак препинания будет в позиции 2,
+                                // а пробел после него - в позиции 3
+                                const UInt16 offsetIndexAfterPunctuationMark = 3;
+                                // исходя из этого, следующее i встанет в позицию 4
+                                const Int16 offsetIndexAfterSecondSpace = 4;
+                                if (i >= -1)
                                 {
-                                    i--;
+                                    line = line.Insert(i + offsetIndexBeforePunctuationMark, " ");
                                 }
-                                line = line.Insert(i + offsetIndex, " ");
+                                line = line.Insert(i + offsetIndexAfterPunctuationMark, " ");
+                                i += offsetIndexAfterSecondSpace;
                             }
                         }
                         // делаем из строки массив подстрок
@@ -118,8 +121,8 @@ namespace TitleCapitalizationTool
                 Console.WriteLine(line);
                 Console.ResetColor();
                 Console.WriteLine(" ");
-                topCursorPosition+=2;
-                }
+                topCursorPosition += 2;
+            }
             while (true);
         }
 
@@ -130,3 +133,4 @@ namespace TitleCapitalizationTool
         }
     }
 }
+//© 2018 GitHub, Inc.
