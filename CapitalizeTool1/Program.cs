@@ -11,29 +11,29 @@ namespace CapitalizationTool
             "Of", "On", "Or", "Out", "So", "The", "To", "Up", "Yet"};
         private Boolean IsEmptyWords(String line)
         {
-            Boolean flag = false;
+            Boolean isEmptyWord = false;
             for (UInt16 i = 0; i < emptyWords.Length; i++)
             {
                 if (line == emptyWords[i])
                 {
-                    flag = true;
+                    isEmptyWord = true;
                     break;
                 }
             }
-            return flag;
+            return isEmptyWord;
         }
         private Boolean IsPunctuationMarks(Char mark)
         {
-            Boolean flag = false;
+            Boolean isPunctuationMark = false;
             for (UInt16 i = 0; i < punctuationMarks.Length; i++)
             {
                 if (mark == punctuationMarks[i])
                 {
-                    flag = true;
+                    isPunctuationMark = true;
                     break;
                 }
             }
-            return flag;
+            return isPunctuationMark;
         }
         public void Сapitalize()
         {
