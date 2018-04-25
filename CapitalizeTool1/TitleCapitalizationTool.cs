@@ -1,12 +1,13 @@
 ﻿using System;
 
-namespace CapitalizationTool
+namespace TitleCapitalizationTool
 {
-    class CapitalizationTool
+    internal class TitleCapitalizationTool
     {
         private Char[] punctuationMarks = { ';', ':', '.', ',', '!', '?', '-' };
         private String[] emptyWords = { "A", "An", "And", "At", "But", "By", "For", "In", "Nor", "Not",
             "Of", "On", "Or", "Out", "So", "The", "To", "Up", "Yet"};
+
         private Boolean IsEmptyWords(String line)
         {
             Boolean isEmptyWord = false;
@@ -20,6 +21,7 @@ namespace CapitalizationTool
             }
             return isEmptyWord;
         }
+
         private Boolean IsPunctuationMarks(Char mark)
         {
             Boolean isPunctuationMark = false;
@@ -33,6 +35,7 @@ namespace CapitalizationTool
             }
             return isPunctuationMark;
         }
+
         public void Сapitalize()
         {
             UInt16 topCursorPosition = 0;
@@ -122,9 +125,10 @@ namespace CapitalizationTool
                 }
             while (true);
         }
+
         public static void Main()
         {
-            CapitalizationTool capitalizationTool = new CapitalizationTool();
+            TitleCapitalizationTool capitalizationTool = new TitleCapitalizationTool();
             capitalizationTool.Сapitalize();
         }
     }

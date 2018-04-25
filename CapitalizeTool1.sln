@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2027
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapitalizeTool1", "CapitalizeTool1\CapitalizeTool1.csproj", "{92D1A11B-F40D-4411-ABE7-24B9D38C65ED}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TitleCapitalizationTool", "CapitalizeTool1\TitleCapitalizationTool.csproj", "{92D1A11B-F40D-4411-ABE7-24B9D38C65ED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
