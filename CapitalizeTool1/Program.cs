@@ -75,28 +75,28 @@ namespace CapitalizationTool
                             }
                         }
                         // делаем из строки массив подстрок
-                        String[] line1 = line.Split(new Char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                        String[] lineArray = line.Split(new Char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
                         // поднимаем первые буквы подстрок
-                        for (UInt16 i = 0; i < line1.Length; i++)
+                        for (UInt16 i = 0; i < lineArray.Length; i++)
                         {
-                            Char firstLetter = Char.ToUpper(line1[i][0]);
-                            line1[i] = line1[i].Remove(0, 1);
-                            line1[i] = line1[i].Insert(0, new String(firstLetter, 1));
+                            Char firstLetter = Char.ToUpper(lineArray[i][0]);
+                            lineArray[i] = lineArray[i].Remove(0, 1);
+                            lineArray[i] = lineArray[i].Insert(0, new String(firstLetter, 1));
                             //если текущее слово не первое и не последнее и является вспомогательным, опускаем первую букву
-                            if (i != 0 && i != line1.Length - 1 && IsEmptyWords(line1[i]))
+                            if (i != 0 && i != lineArray.Length - 1 && IsEmptyWords(lineArray[i]))
                             {
-                                line1[i] = line1[i].ToLower();
+                                lineArray[i] = lineArray[i].ToLower();
                             }
                         }
                         // если в конце строки знак препинания, поднимаем первую букву слова перед ним
-                        if (line1.Length > 1 && IsPunctuationMarks(line1[line1.Length - 1][0]))
+                        if (lineArray.Length > 1 && IsPunctuationMarks(lineArray[lineArray.Length - 1][0]))
                         {
-                            Char firstLetter = Char.ToUpper(line1[line1.Length - 2][0]);
-                            line1[line1.Length - 2] = line1[line1.Length - 2].Remove(0, 1);
-                            line1[line1.Length - 2] = line1[line1.Length - 2].Insert(0, new String(firstLetter, 1));
+                            Char firstLetter = Char.ToUpper(lineArray[lineArray.Length - 2][0]);
+                            lineArray[lineArray.Length - 2] = lineArray[lineArray.Length - 2].Remove(0, 1);
+                            lineArray[lineArray.Length - 2] = lineArray[lineArray.Length - 2].Insert(0, new String(firstLetter, 1));
                         }
                         // собираем строку
-                        line = String.Join(" ", line1);
+                        line = String.Join(" ", lineArray);
                         // если была введена пробельная строка, StringSplitOptions.RemoveEmptyEntries сделает ее пустой и она не будет обрабатываться, поэтому добавляем пробел
                         if (line.Length == 0)
                         {
