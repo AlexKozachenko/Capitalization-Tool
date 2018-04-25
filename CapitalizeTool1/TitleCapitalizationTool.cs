@@ -54,25 +54,22 @@ namespace TitleCapitalizationTool
                     {
                         line = line.ToLower();
                         // если по ходу строки встречаются знаки препинания, отделяем их пробелами
+                        UInt16 counterOfPunctuationMarks = 0;
                         for (Int16 i = 0; i < line.Length; i++)
                         {
                             if (IsPunctuationMarks(line[i]))
                             {
-                                // откат индекса на 1, чтобы в Insert'ах не было выражений с вычитанием, тогда не работает
-                                i--;
+                                counterOfPunctuationMarks++;
+                                // если знак препинания встречется впервые, перед ним нужно вставить пробел
+                                // для этого выполняется 
+                                // откат индекса на 1, чтобы в Insert'ах не было выражений с вычитанием 
                                 // первый пробел вставляется в позицию 1 от нового i
-                                const UInt16 offsetIndexBeforePunctuationMark = 1;
-                                // соответственно знак препинания будет в позиции 2,
-                                // а пробел после него - в позиции 3
-                                const UInt16 offsetIndexAfterPunctuationMark = 3;
-                                // исходя из этого, следующее i встанет в позицию 4
-                                const Int16 offsetIndexAfterSecondSpace = 4;
-                                if (i >= -1)
+                                const UInt16 offsetIndex = 1;
+                                if (counterOfPunctuationMarks == 1 )
                                 {
-                                    line = line.Insert(i + offsetIndexBeforePunctuationMark, " ");
+                                    i--;
                                 }
-                                line = line.Insert(i + offsetIndexAfterPunctuationMark, " ");
-                                i += offsetIndexAfterSecondSpace;
+                                line = line.Insert(i + offsetIndex, " ");
                             }
                         }
                         // делаем из строки массив подстрок
