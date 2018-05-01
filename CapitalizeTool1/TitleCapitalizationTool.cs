@@ -1,39 +1,17 @@
 ﻿using System;
 
-namespace TitleCapitalizationTool
+namespace Capitalization
 {
     internal class TitleCapitalizationTool
     {
-        private Char[] punctuationMarks = { ';', ':', '.', ',', '!', '?', '-' };
         private String[] emptyWords = { "A", "An", "And", "At", "But", "By", "For", "In", "Nor", "Not",
-            "Of", "On", "Or", "Out", "So", "The", "To", "Up", "Yet"};
+            "Of", "On", "Or", "Out", "So", "The", "To", "Up", "Yet" };
+        private Char[] punctuationMarks = { ';', ':', '.', ',', '!', '?', '-' };
 
-        private Boolean IsEmptyWords(String line)
+        public static void Main()
         {
-            Boolean isEmptyWord = false;
-            for (UInt16 i = 0; i < emptyWords.Length; i++)
-            {
-                if (line == emptyWords[i])
-                {
-                    isEmptyWord = true;
-                    break;
-                }
-            }
-            return isEmptyWord;
-        }
-
-        private Boolean IsPunctuationMarks(Char mark)
-        {
-            Boolean isPunctuationMark = false;
-            for (UInt16 i = 0; i < punctuationMarks.Length; i++)
-            {
-                if (mark == punctuationMarks[i])
-                {
-                    isPunctuationMark = true;
-                    break;
-                }
-            }
-            return isPunctuationMark;
+            TitleCapitalizationTool capitalizationTool = new TitleCapitalizationTool();
+            capitalizationTool.Сapitalize();
         }
 
         public void Сapitalize()
@@ -76,28 +54,28 @@ namespace TitleCapitalizationTool
                             }
                         }
                         // делаем из строки массив подстрок
-                        String[] lineArray = line.Split(new Char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                        String[] substrings = line.Split(new Char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
                         // поднимаем первые буквы подстрок
-                        for (UInt16 i = 0; i < lineArray.Length; i++)
+                        for (UInt16 i = 0; i < substrings.Length; i++)
                         {
-                            Char firstLetter = Char.ToUpper(lineArray[i][0]);
-                            lineArray[i] = lineArray[i].Remove(0, 1);
-                            lineArray[i] = lineArray[i].Insert(0, new String(firstLetter, 1));
+                            Char firstLetter = Char.ToUpper(substrings[i][0]);
+                            substrings[i] = substrings[i].Remove(0, 1);
+                            substrings[i] = substrings[i].Insert(0, new String(firstLetter, 1));
                             //если текущее слово не первое и не последнее и является вспомогательным, опускаем первую букву
-                            if (i != 0 && i != lineArray.Length - 1 && IsEmptyWords(lineArray[i]))
+                            if (i != 0 && i != substrings.Length - 1 && IsEmptyWords(substrings[i]))
                             {
-                                lineArray[i] = lineArray[i].ToLower();
+                                substrings[i] = substrings[i].ToLower();
                             }
                         }
                         // если в конце строки знак препинания, поднимаем первую букву слова перед ним
-                        if (lineArray.Length > 1 && IsPunctuationMarks(lineArray[lineArray.Length - 1][0]))
+                        if (substrings.Length > 1 && IsPunctuationMarks(substrings[substrings.Length - 1][0]))
                         {
-                            Char firstLetter = Char.ToUpper(lineArray[lineArray.Length - 2][0]);
-                            lineArray[lineArray.Length - 2] = lineArray[lineArray.Length - 2].Remove(0, 1);
-                            lineArray[lineArray.Length - 2] = lineArray[lineArray.Length - 2].Insert(0, new String(firstLetter, 1));
+                            Char firstLetter = Char.ToUpper(substrings[substrings.Length - 2][0]);
+                            substrings[substrings.Length - 2] = substrings[substrings.Length - 2].Remove(0, 1);
+                            substrings[substrings.Length - 2] = substrings[substrings.Length - 2].Insert(0, new String(firstLetter, 1));
                         }
                         // собираем строку
-                        line = String.Join(" ", lineArray);
+                        line = String.Join(" ", substrings);
                         // если была введена пробельная строка, StringSplitOptions.RemoveEmptyEntries сделает ее пустой и она не будет обрабатываться, поэтому добавляем пробел
                         if (line.Length == 0)
                         {
@@ -112,8 +90,7 @@ namespace TitleCapitalizationTool
                             }
                         }
                     }
-                }
-                while (line.Length == 0);
+                } while (line.Length == 0);
                 Console.ResetColor();
                 Console.WriteLine("Capitalized title: ");
                 Console.SetCursorPosition("Capitalized title: ".Length, topCursorPosition);
@@ -122,14 +99,35 @@ namespace TitleCapitalizationTool
                 Console.ResetColor();
                 Console.WriteLine(" ");
                 topCursorPosition += 2;
-            }
-            while (true);
+            } while (true);
         }
 
-        public static void Main()
+        private Boolean IsEmptyWords(String line)
         {
-            TitleCapitalizationTool capitalizationTool = new TitleCapitalizationTool();
-            capitalizationTool.Сapitalize();
+            Boolean isEmptyWord = false;
+            for (UInt16 i = 0; i < emptyWords.Length; i++)
+            {
+                if (line == emptyWords[i])
+                {
+                    isEmptyWord = true;
+                    break;
+                }
+            }
+            return isEmptyWord;
+        }
+
+        private Boolean IsPunctuationMarks(Char mark)
+        {
+            Boolean isPunctuationMark = false;
+            for (UInt16 i = 0; i < punctuationMarks.Length; i++)
+            {
+                if (mark == punctuationMarks[i])
+                {
+                    isPunctuationMark = true;
+                    break;
+                }
+            }
+            return isPunctuationMark;
         }
     }
 }
