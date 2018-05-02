@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Capitalization
+namespace TitileCapitalizationTool
 {
-    internal class TitleCapitalizationTool
+    internal class CapitalizationTool
     {
         private String[] emptyWords = { "A", "An", "And", "At", "But", "By", "For", "In", "Nor", "Not",
             "Of", "On", "Or", "Out", "So", "The", "To", "Up", "Yet" };
@@ -10,7 +10,7 @@ namespace Capitalization
 
         public static void Main()
         {
-            TitleCapitalizationTool capitalizationTool = new TitleCapitalizationTool();
+            CapitalizationTool capitalizationTool = new CapitalizationTool();
             capitalizationTool.Сapitalize();
         }
 
@@ -101,7 +101,6 @@ namespace Capitalization
                 topCursorPosition += 2;
             } while (true);
         }
-
         private Boolean IsEmptyWords(String line)
         {
             Boolean isEmptyWord = false;
