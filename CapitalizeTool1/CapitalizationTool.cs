@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TitileCapitalizationTool
+namespace TitleCapitalizationTool
 {
     internal class CapitalizationTool
     {
