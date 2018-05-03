@@ -7,13 +7,6 @@ namespace TitleCapitalizationTool
         private String[] emptyWords = { "A", "An", "And", "At", "But", "By", "For", "In", "Nor", "Not",
             "Of", "On", "Or", "Out", "So", "The", "To", "Up", "Yet" };
         private Char[] punctuationMarks = { ';', ':', '.', ',', '!', '?', '-' };
-
-        public static void Main()
-        {
-            CapitalizationTool capitalizationTool = new CapitalizationTool();
-            capitalizationTool.Сapitalize();
-        }
-
         public void Сapitalize()
         {
             UInt16 topCursorPosition = 0;
@@ -129,5 +122,14 @@ namespace TitleCapitalizationTool
             return isPunctuationMark;
         }
     }
+    internal class Program
+    {
+        public static void Main(String[]args)
+        {
+            CapitalizationTool capitalizationTool = new CapitalizationTool();
+            capitalizationTool.Сapitalize();
+        }
+    }
 }
+
 //© 2018 GitHub, Inc.
