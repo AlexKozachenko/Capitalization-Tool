@@ -1,5 +1,4 @@
-﻿using System;
-namespace TitleCapitalizationTool
+﻿namespace TitleCapitalizationTool
 {
     internal class MainCapitalizationTool
     {
