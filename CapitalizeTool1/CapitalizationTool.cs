@@ -124,15 +124,6 @@ namespace TitleCapitalizationTool
             return isPunctuationMark;
         }
     }
-
-    internal class Program
-    {
-        public static void Main()
-        {
-            CapitalizationTool capitalizationTool = new CapitalizationTool();
-            capitalizationTool.Сapitalize();
-        }
-    }
 }
 
 //© 2018 GitHub, Inc.
