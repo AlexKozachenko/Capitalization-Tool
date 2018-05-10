@@ -1,7 +1,7 @@
 ﻿using System;
 
 namespace TitleCapitalizationTool
-{
+{ 
     internal class CapitalizationTool
     {
         private String[] emptyWords = { "A", "An", "And", "At", "But", "By", "For", "In", "Nor", "Not",
